@@ -11,11 +11,13 @@ import AddProduct from '../../components/ProductAdd';
 
 
 const ProductList = () => {
+   const [sortCount, setSortCount] = useState(false)
    const [updatepage, setUpdatePage] = useState(false);
    const [products, setProducts] = useState([]);
    const [maxID, setMaxID] = useState(0);
    const [removeItem, setRemoveItem] = useState(false);
    const [idRemove, setIdRemove] = useState();
+   const [open, setOpen] = useState(false);
    useEffect(() => {
       getProducts
          .get("/products.json")
@@ -29,8 +31,18 @@ const ProductList = () => {
             setMaxID(Math.max(...id_arr));
          })
    }, [updatepage]);
+   const SortCountFoo = async () => {
+      if (sortCount) {
+         let descending = await products.sort((a, b) => Number(b.count) - Number(a.count));
+         setProducts(descending);
+         setSortCount(!sortCount);
+         console.log("UPDATE");
+      }
+      let ascending = await products.sort((a, b) => Number(a.count) - Number(b.count));
+      setProducts(ascending);
+      setSortCount(!sortCount);
+   }
 
-   const [open, setOpen] = useState(false);
 
    const OpenRemove = (e) => {
       console.log(e);
@@ -48,7 +60,6 @@ const ProductList = () => {
          .patch(`/products/${idRemove - 1}.json`, rem);
       setUpdatePage(!updatepage);
       setRemoveItem(false);
-
    }
 
    const handleOpen = () => {
@@ -58,7 +69,6 @@ const ProductList = () => {
    const handleClose = () => {
       setUpdatePage(!updatepage);
       setOpen(false);
-      console.log("UPDATE");
    };
 
    return (
@@ -67,6 +77,7 @@ const ProductList = () => {
          <Button onClick={handleOpen} variant="contained" color="primary">
             Add Product
          </Button>
+         <Button onClick={SortCountFoo}>Sort by Count</Button>
          <Modal
             open={open}
             onClose={handleClose}>
