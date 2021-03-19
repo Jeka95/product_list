@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
+import { NavLink } from "react-router-dom";
 
 import PutComment from "../../instance";
 import getProduct from "../../instance";
@@ -63,7 +64,7 @@ const ProductDetails = (props) => {
 
 
    return (
-      <div className="deteils_wrapper">
+      <div className="productDetails">
          <h1>ProductDetails</h1>
          <Button onClick={handleOpen}>Edit</Button>
          <Modal
@@ -76,12 +77,12 @@ const ProductDetails = (props) => {
          </Modal>
          <div className="productDetails__item">
             <img src={props.location.elem.imageUrl} alt="some img" className="product__img" />
-            <span className="productDetails__name">{product.name}</span>
-            <div className="productDetails__dicsription">{product.discription}</div>
-            <div className="pproductDetails__info">
-               <span className="productDetails__height">{product.size.height ? product.size.height : null}</span>
-               <span className="productDetails__width">{product.size.width ? product.size.width : null}</span>
-               <span className="pproductDetails__weight">{product.size.weight}</span>
+            <span className="productDetails__name"> Name :{product.name}</span>
+            <div className="productDetails__dicsription"> Discription: {product.discription}</div>
+            <div className="productDetails__info">
+               <span className="productDetails__height"> Height: {product.size.height ? product.size.height : null}</span>
+               <span className="productDetails__width"> Width: {product.size.width ? product.size.width : null}</span>
+               <span className="productDetails__weight"> Weight: {product.size.weight}</span>
             </div>
             <div className="productDetails__coments">
                {product.coments ? product.coments.filter(elem => elem.deleted === false).map(el => {
@@ -96,9 +97,17 @@ const ProductDetails = (props) => {
                   <textarea name="" id="" cols="30" rows="10" className="productDeteils__text" value={coment} onChange={e => setComent(e.target.value)}></textarea>
                   <Button onClick={AddComent}>Add coment</Button>
                </div>
+               <NavLink
+                  to={{
+                     pathname: "/",
 
+                  }}
+                  exact
+               >Back to List
+                     </NavLink>
             </div>
          </div>
+
       </div>
    );
 }

@@ -91,7 +91,7 @@ const ProductList = () => {
                      <img src={elem.imageUrl} alt="some img" className="product__img" />
                      <span className="product__name">name:{elem.name}</span>
                      <span className="product__count">count:{elem.count}</span>
-                     <div className="product__dicsription">discription: {elem.discription}</div>
+                     <p className="product__dicsription">discription: {elem.discription}</p>
                      <div className="product__info">
                         <span className="product__height">height:{elem.size.height}</span>
                         <span className="product__width">width:{elem.size.width}</span>
