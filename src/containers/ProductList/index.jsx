@@ -27,7 +27,6 @@ const ProductList = () => {
             let id_arr = response.data.map(e => {
                return (e.id)
             })
-            console.log(id_arr);
             setMaxID(Math.max(...id_arr));
          })
    }, [updatepage]);
@@ -36,7 +35,6 @@ const ProductList = () => {
          let descending = await products.sort((a, b) => Number(b.count) - Number(a.count));
          setProducts(descending);
          setSortCount(!sortCount);
-         console.log("UPDATE");
       }
       let ascending = await products.sort((a, b) => Number(a.count) - Number(b.count));
       setProducts(ascending);
@@ -45,7 +43,6 @@ const ProductList = () => {
 
 
    const OpenRemove = (e) => {
-      console.log(e);
       setIdRemove(e);
       setRemoveItem(true);
    }

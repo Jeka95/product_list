@@ -33,7 +33,6 @@ const ProductDetails = (props) => {
                   Math.max(...id_arr)
                );
             }
-            console.log("UPDATE");
          })
    }, [updatepage]);
    const handleClose = () => {
@@ -44,12 +43,10 @@ const ProductDetails = (props) => {
       let comentdel = {
          deleted: true,
       }
-      console.log("maxID", e);
       await PutComment
          .patch(`/products/${props.location.elem.id - 1}/coments/${e.id - 1}.json`, comentdel);
       setUpdatePage(!updatepage);
 
-      console.log(e);
    };
    const AddComent = async () => {
       let comentadd = {
@@ -67,8 +64,6 @@ const ProductDetails = (props) => {
 
    return (
       <div className="deteils_wrapper">
-         {console.log(maxID)}
-         {console.log(product)}
          <h1>ProductDetails</h1>
          <Button onClick={handleOpen}>Edit</Button>
          <Modal

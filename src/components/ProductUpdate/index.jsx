@@ -19,7 +19,7 @@ class ProductUpdate extends React.Component {
    }
    handleChange(event) {
       this.setState({ [event.target.name]: event.target.value });
-      console.log(this.state);
+
    };
 
    async UpdateProduct() {
@@ -38,7 +38,6 @@ class ProductUpdate extends React.Component {
       }
       await updateProducts
          .put(`/products/${this.state.id - 1}.json`, resulProduct);
-      console.log("гуд");
       this.setState = {
          name: "",
          img: "",
