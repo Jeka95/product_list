@@ -30,7 +30,7 @@
          padding: 10px 5px;
          font-size: 20px;
          border-bottom: 2px solid rgb(48, 50, 121);
-         color: white;
+         color: rgb(19, 18, 18);
          -webkit-box-flex: 0;
          -ms-flex: 0 0 auto;
          flex: 0 0 auto;
@@ -39,7 +39,7 @@
       }
       input:focus {
          outline: none;
-         background-color: #1c2647;
+         background-color: #bcc1cf;
       }
    }
    &__btn {
